@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal</title>
+    <link rel="stylesheet" href="chart.css">
+    <link rel="stylesheet" href="navigation.css">
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      th, td {
+        text-align: left;
+        padding: 8px;
+      }
+      
+      tr:nth-child(even){background-color: #f2f2f2}
+      
+      th {
+        background-color: #04AA6D;
+        color: white;
+      }
+      </style>
+</head>
+<body>
+    <div class="main_container" id="home">
+        <div class="navbar">
+            <div class="logo">
+                <a href="#">Student Performance Tracker</a>
+            </div>
+            <div class="navbar_items">
+                <ul>
+                    <li><a href="index.html">LOGOUT</a></li>
+                    <li><a href="index.html">CONTACT US</a></li>
+                    <li><a href="admin_login.html">ADMIN</a></li>
+                    <li><a href="index.html">HOME</a></li>
+                </ul>
+            </div>
+        </div> 
+        <!-- <div class="banner_image">
+            <div class="form-box">
+                <div class="button-box">
+                    <div>
+                        <h2><center>Student Details</center></h2>
+                    </div>
+                </div>
+                <div id="studentTable"></div>
+            </div>
+        </div>
+    </div> -->
+    <div class="banner_image">
+      <div class="form-box">
+          <div class="button-box">
+              <div>
+                  <h2><center>Student Details</center></h2>
+              </div>
+          </div>
+          <table id="studentTable">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Semester</th>
+                      <th>Department</th>
+                      <th>E-mail</th>
+                      <th>Phone Number</th>
+                      <th>Father Name</th>
+                  </tr>
+              </thead>
+              <tbody id="studentTableBody"></tbody>
+          </table>
+      </div>
+  </div>
+</div>
+
+<script>
+  async function fetchStudents() {
+      try {
+          const response = await fetch('http://localhost:3000/students');
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+
+          const data = await response.json();
+          const tableBody = document.querySelector('#studentTableBody');
+          const students = data.data;
+
+          if (students.length > 0) {
+              students.forEach(student => {
+                  const row = document.createElement('tr');
+                  const values = [
+                      student.ID,
+                      student.Name,
+                      student.Semester,
+                      student.Department,
+                      student['E-mail'],
+                      student['Phone Number'],
+                      student['Father Name']
+                  ];
+
+                  values.forEach(value => {
+                      const cell = document.createElement('td');
+                      cell.textContent = value;
+                      row.appendChild(cell);
+                  });
+
+                  tableBody.appendChild(row);
+              });
+          } else {
+              tableBody.innerHTML = '<tr><td colspan="6">No Rows Returned</td></tr>';
+          }
+      } catch (error) {
+          console.error('Error fetching data:', error);
+      }
+  }
+
+  fetchStudents();
+</script>
+    <!-- <script>
+        async function fetchStudents() {
+          try {
+            const response = await fetch('http://localhost:3003/students');
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+  
+            const data = await response.json();
+            const table = document.getElementById('studentTable');
+            const students = data.data;
+  
+            if (students.length > 0) {
+              const headers = Object.keys(students[0]);
+              const headerRow = document.createElement('tr');
+  
+              // headers.forEach(header => {
+              //   const th = document.createElement('th');
+              //   th.textContent = header.toUpperCase();
+              //   headerRow.innerHTML = '<th>ID</th><th>Name</th><th>Semester</th><th>Department</th><th>E-mail</th><th>Phone Number</th>';
+              // });
+  
+              table.appendChild(headerRow);
+  
+              students.forEach(student => {
+                const row = document.createElement('tr');
+  
+                headers.forEach(header => {
+                  const cell = document.createElement('td');
+                  cell.textContent = student[header];
+                  row.appendChild(cell);
+                });
+  
+                table.appendChild(row);
+              });
+            } else {
+              table.innerHTML = '<tr><td colspan="7">No Rows Returned</td></tr>';
+            }
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        }
+  
+        fetchStudents();
+      </script> -->
+</body>
+</html>

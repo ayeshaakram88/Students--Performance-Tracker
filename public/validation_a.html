@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <script>
+        function login() {
+            const adminEmail = document.getElementById('admin_email').value;
+            const adminPassword = document.getElementById('admin_password').value;
+
+            console.log(adminEmail);
+
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: adminEmail, password: adminPassword })
+            
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Redirect to admin portal on successful login
+                    window.location.href = 'admin_portal.html'; // admin_portal.html
+                } else {
+                    // Display error message for unsuccessful login
+                    const errorElement = document.getElementById('error_message');
+                    errorElement.textContent = 'Login failed. Please try again.';
+                }
+            })
+            .catch(error => {
+                // Handle any fetch errors here
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="event.preventDefault(); login();">
+        <input type="text" id="admin_email" placeholder="Admin Email" required><br>
+        <input type="password" id="admin_password" placeholder="Password" required><br>
+        <input type="submit" value="Login">
+        <p id="error_message" style="color: red;"></p> <!-- Error message placeholder -->
+    </form>
+</body>
+</html>
+

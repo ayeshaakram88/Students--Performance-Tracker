@@ -1,0 +1,183 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Portal</title>
+    <link rel="stylesheet" href="chart.css" />
+    <link rel="stylesheet" href="navigation.css" />
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      th {
+        background-color: #04aa6d;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main_container" id="home">
+      <div class="navbar">
+        <div class="logo">
+          <a href="#">Student Performance Tracker</a>
+        </div>
+        <div class="navbar_items">
+          <ul>
+            <li><a href="index.html">LOGOUT</a></li>
+            <li><a href="index.html">CONTACT US</a></li>
+            <li><a href="index.html">HOME</a></li>
+          </ul>
+        </div>
+        <div class="banner_image">
+          <div class="form-box">
+            <div class="button-box">
+              <div>
+                <h2><center>Marks Table</center></h2>
+              </div>
+            </div>
+            <table id="marksTable">
+              <tbody id="marksTableBody"></tbody>
+            </table>
+            <script>
+
+              console,li
+              function displayMarksTable(data) {
+                const tableContainer =
+                  document.getElementById("marksTableBody");
+                const table = document.createElement("table");
+                const headerRow = table.createTHead().insertRow();
+                const headers = ["Course ID", "GPA", "Grade"];
+                console.log(data);
+                headers.forEach((headerText) => {
+                  const th = document.createElement("th");
+                  th.textContent = headerText;
+                  headerRow.appendChild(th);
+                });
+
+                data.forEach((rowData) => {
+                  const row = table.insertRow();
+                  rowData.forEach((cellData) => {
+                    const cell = row.insertCell();
+                    cell.textContent = cellData;
+                  });
+                });
+
+                tableContainer.appendChild(table);
+              }
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Student Portal</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      th {
+        background-color: #04aa6d;
+        color: white;
+      }
+    </style>
+    <link rel="stylesheet" href="chart.css" />
+    <link rel="stylesheet" href="navigation.css" />
+  </head>
+  <body>
+    <div class="main_container" id="home">
+      <div class="form-box">
+        <div class="button-box">
+          <div>
+            <h2><center>Marks Table</center></h2>
+          </div>
+        </div>
+        <table id="marksTable">
+          <thead>
+            <tr>
+              <th>Semester</th>
+              <th>Course ID</th>
+              <th>Course Name</th>
+              <th>Credit Hours Earned</th>
+              <th>Course GPA</th>
+              <th>Course Grade</th>
+              <th>GPA</th>
+              <th>Grade</th>
+            </tr>
+          </thead>
+          <tbody id="marksTableBody"></tbody>
+        </table>
+      </div>
+
+      <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const data = urlParams.get("data");
+
+        // If data exists, parse it back to an object
+        let result;
+        if (data) {
+          result = JSON.parse(decodeURIComponent(data));
+          console.log(result);
+          displayMarksTable(result);
+          // Here, 'result' contains the data from the backend
+        } else {
+          console.log("No data received from the backend");
+        }
+
+        // Function to display data in the table
+        function displayMarksTable(data) {
+          const tableBody = document.getElementById("marksTableBody");
+
+          data.forEach((rowData) => {
+            const row = document.createElement("tr");
+
+            rowData.forEach((cellData) => {
+              const cell = document.createElement("td");
+              cell.textContent = cellData;
+              row.appendChild(cell);
+            });
+
+            tableBody.appendChild(row);
+          });
+        }
+
+        // Fetching data from a hypothetical endpoint
+      </script>
+    </div>
+  </body>
+</html>

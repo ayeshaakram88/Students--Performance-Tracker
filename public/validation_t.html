@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Login</title>
+</head>
+<body>
+    <form id="loginForm" action="/logint">
+        <input type="text" id="t_email" placeholder="Teacher Email" required><br>
+        <input type="password" id="t_password" placeholder="Password" required><br>
+        <input type="submit" value="Login">
+    </form>
+
+  <script>
+        document.getElementById('loginForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const tEmail = document.getElementById('t_email').value;
+            const tPassword = document.getElementById('t_password').value;
+
+            try {
+                const response = await fetch('/logint', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email: tEmail, password: tPassword }),
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    alert('Successfully logged in');
+                    window.location.href = 'teach_portal.html'; // Redirects to teacher portal on successful login
+                } else {
+                    alert('Invalid credentials. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error.message);
+                alert('Failed to log in. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>

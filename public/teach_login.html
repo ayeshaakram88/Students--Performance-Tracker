@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Desk</title>
+    <script>
+      // document.getElementById('loginForm').addEventListener('submit', async (event) => {
+      // event.preventDefault();
+      async function login() {
+        const tEmail = document.getElementById("t_email").value;
+        const tPassword = document.getElementById("t_password").value;
+
+        try {
+          const response = await fetch("/logint", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email: tEmail, password: tPassword }),
+          });
+
+          const data = await response.json();
+          if (data.success) {
+            alert("Successfully logged in");
+            window.location.href = "teach_portal.html"; // Redirects to teacher portal on successful login
+          } else {
+            alert("Invalid credentials. Please try again.");
+          }
+        } catch (error) {
+          console.error("Error:", error.message);
+          alert("Failed to log in. Please try again.");
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="layout.css" />
+    <link rel="stylesheet" href="navigation.css" />
+  </head>
+
+  <body>
+    <div class="main_container" id="home">
+      <div class="navbar">
+        <div class="logo">
+          <a href="#">Student Performance Tracker</a>
+        </div>
+        <div class="navbar_items">
+          <ul>
+            <li><a href="index.html">LOGOUT</a></li>
+            <li><a href="index.html">CONTACT US</a></li>
+            <li><a href="teach_login.html">TEACHER</a></li>
+            <li><a href="index.html">HOME</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="hero">
+        <div class="form-box">
+          <div class="button-box">
+            <div>
+              <h2><center>Teacher Login</center></h2>
+            </div>
+          </div>
+          <form
+            id="login"
+            class="input-group"
+            onsubmit="event.preventDefault(); login();"
+          >
+            <input
+              type="email"
+              name="t_email"
+              id="t_email"
+              class="input-field"
+              placeholder="User Id"
+              required
+            />
+            <input
+              type="password"
+              name="t_password"
+              id="t_password"
+              class="input-field"
+              placeholder="Enter Password"
+              required
+            />
+            <input type="checkbox" class="chech-box" /><span
+              >Remember Password</span
+            >
+            <button type="submit" class="submit-btn">Login</button>
+          </form>
+          <!--   <form id="register" class="input-groupss" action="reg_t.html" method="post">
+          <input type="text" name="t_name" id="t_name" class="input-field" placeholder="Teacher Name" required>
+          <input type="text" name="sub_id" id="sub_id" class="input-field" placeholder="Subject Code" required>
+          <input type="text" name="sub_name" id="sub_name" class="input-field" placeholder="Subject Name" required>
+          <input type="text" name="t_phno" id="t_phno" class="input-field" placeholder="Contact No" required>
+          <input type="email" name="t_email" id="t_email" class="input-field" placeholder="Email" required>
+          <input type="password" name="t_password" id="t_password" class="input-field" placeholder="Enter Password" required>
+          <button type="submit" class="submit-btn"> Submit </button>
+        </form> -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var x = document.getElementById("login");
+      var y = document.getElementById("register");
+      var z = document.getElementById("btn");
+
+      function register() {
+        x.style.left = "-400px";
+        y.style.left = "50px";
+        z.style.left = "110px";
+      }
+
+      function login1() {
+        x.style.left = "50px";
+        y.style.left = "450px";
+        z.style.left = "0px";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Desk</title>
+    <script>
+      function login() {
+        const adminEmail = document.getElementById("admin_email").value;
+        const adminPassword = document.getElementById("admin_password").value;
+
+        console.log(adminEmail);
+
+        fetch("/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: adminEmail, password: adminPassword }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              // Redirect to admin portal on successful login
+              window.location.href = "admin_portal.html"; // admin_portal.html
+            } else {
+              // Display error message for unsuccessful login
+              const errorElement = document.getElementById("error_message");
+              errorElement.textContent = "Login failed. Please try again.";
+            }
+          })
+          .catch((error) => {
+            // Handle any fetch errors here
+            console.error("Error:", error);
+          });
+      }
+    </script>
+    <link rel="stylesheet" href="layout.css" />
+    <link rel="stylesheet" href="navigation.css" />
+  </head>
+
+  <body>
+    <div class="main_container" id="home">
+      <div class="navbar">
+        <div class="logo">
+          <a href="#">Student Performance Tracker</a>
+        </div>
+        <div class="navbar_items">
+          <ul>
+            <li><a href="index.html">LOGOUT</a></li>
+            <li><a href="index.html">CONTACT US</a></li>
+            <li><a href="admin_login.html">ADMIN</a></li>
+            <li><a href="index.html">HOME</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="hero">
+        <div class="form-box">
+          <div class="button-box">
+            <div>
+              <h2><center>Admin Login</center></h2>
+            </div>
+          </div>
+          <form
+            id="login"
+            class="input-group"
+            onsubmit="event.preventDefault(); login();"
+          >
+            <input
+              type="email"
+              name="admin_email"
+              id="admin_email"
+              class="input-field"
+              placeholder="User Id"
+              required
+            />
+            <input
+              type="password"
+              name="admin_password"
+              id="admin_password"
+              class="input-field"
+              placeholder="Enter Password"
+              required
+            />
+            <input type="checkbox" class="chech-box" /><span
+              >Remember Password</span
+            >
+            <button type="submit" class="submit-btn">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

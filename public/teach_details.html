@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal</title>
+    <link rel="stylesheet" href="chart.css">
+    <link rel="stylesheet" href="navigation.css">
+   <style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+</head>
+<body>
+    <div class="main_container" id="home">
+        <!-- Navbar -->
+        <div class="navbar">
+            <div class="logo">
+                <a href="#">Student Performance Tracker</a>
+            </div>
+            <div class="navbar_items">
+                <ul>
+                    <li><a href="index.html">LOGOUT</a></li>
+                    <li><a href="index.html">CONTACT US</a></li>
+                    <li><a href="admin_login.html">ADMIN</a></li>
+                    <li><a href="index.html">HOME</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Banner -->
+        <div class="banner_image">
+            <div class="form-box">
+                <div class="button-box">
+                    <div>
+                        <h2><center>Teacher Details</center></h2>
+                    </div>
+                </div>
+                <div id="teacherTable"></div>
+            </div>
+        </div>
+        <table id="teacherTable">
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>E-mail</th>
+                  <th>Phone</th>
+              </tr>
+          </thead>
+          <tbody id="teacherTableBody"></tbody>
+      </table>
+      
+      
+        <script>
+            async function fetchTeachers() {
+              try {
+                const response = await fetch('http://localhost:3000/teachers');
+                if (!response.ok) {
+                  throw new Error('Network response was not ok');
+                }
+          
+                const data = await response.json();
+                const tableBody = document.querySelector('#teacherTableBody');
+          
+                if (data.data.length > 0) {
+                  data.data.forEach(teacher => {
+                    const row = document.createElement('tr');
+          
+                    Object.values(teacher).forEach(value => {
+                      const cell = document.createElement('td');
+                      cell.textContent = value;
+                      row.appendChild(cell);
+                    });
+          
+                    tableBody.appendChild(row);
+                  });
+                } else {
+                  tableBody.innerHTML = '<tr><td colspan="7">No Rows Returned</td></tr>';
+                }
+              } catch (error) {
+                console.error('Error fetching data:', error);
+              }
+            }
+          
+            fetchTeachers();
+          </script>
+    </div>
+</body>
+</html>
+
+</div>
+</div>
+</body>
+</html>

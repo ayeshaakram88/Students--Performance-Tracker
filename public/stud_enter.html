@@ -1,0 +1,89 @@
+<html><!--admin add details of student and teacher-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal</title>
+    <link rel="stylesheet" href="design.css">
+    <link rel="stylesheet" href="navigation.css">
+</head>
+<body>
+	<div class="main_container" id="home">
+
+	<div class="navbar">
+	    <div class="logo">
+			<a href="#">Student Performance Tracker</a>
+		</div>
+		    <div class="navbar_items">
+			  <ul>
+				<li><a href="index.html">LOGOUT</a></li>
+			    <li><a href="index.html">CONTACT US</a></li>
+			    <li><a href="teach_login.html">TEACHER</a></li>
+			    <li><a href="index.html">HOME</a></li>
+			  </ul>
+		    </div>
+	</div> 
+<div class="banner_image">
+        <div class="form-box">
+        	<div class="button-box">
+                <div>
+                <h2><center>Student Details</center></h2></div>
+                </div>
+	<form method="POST" action="/submitStudent">
+            <input type="text" name="student_id" id="st_id" class="input-field" placeholder="Enter Student ID" required>
+            <input type="text" name="student_name" id="st_name" class="input-field" placeholder="Enter Student Name" required>
+            <select id="st_semester" name="student_semester" class="input-field" required>
+				<option value="Select a Semester" selected>Select a Semester</option>
+				<option value="Semester 1">Semester 1</option>
+				<option value="Semester 2">Semester 2</option>
+				<option value="Semester 3">Semester 3</option>
+				<option value="Semester 4">Semester 4</option>
+				<option value="Semester 5">Semester 5</option>
+				<option value="Semester 6">Semester 6</option> <!--backend change-->
+				<option value="Semester 7">Semester 7</option>
+				<option value="Semester 8">Semester 8</option>
+			</select>
+            <input type="text" name="student_dept" id="st_dept" class="input-field" placeholder="Enter Department" required>
+            <input type="email" name="email" id="email" class="input-field" placeholder="Enter Email" required>
+			<input type="number" name="phone" id="phone" class="input-field" placeholder="Enter Phone Number" required>
+			<input type="text" name="fathername" id="fathername" class="input-field" placeholder="Enter Father Name" required>
+            <div>
+                <button type="submit" name="submit" value="Submit" class="submit-btn">Submit</button>
+            </div>
+        
+	</form>
+
+
+	<!-- Create/Insert data into db  -->
+	<!--<script>
+		document.querySelector('form').addEventListener('submit', async (e) => {
+		  e.preventDefault();
+	  
+		  const stud_id = document.getElementById('stud_name').value;
+		  const sub_id = document.getElementById('sub_id').value;
+		  const month = document.getElementById('month').value;
+		  const total = document.getElementById('total').value;
+		  const marks = document.getElementById('marks').value;
+	  
+		  try {
+			const response = await fetch('/submitMarks', {
+			  method: 'POST',
+			  headers: {
+				'Content-Type': 'application/json',
+			  },
+			  body: JSON.stringify({ stud_id, sub_id, month, total, marks }),
+			});
+	  
+			const data = await response.json();
+			alert(data.message); // Show response message
+		  } catch (error) {
+			console.error('Error:', error.message);
+			alert('Failed to submit');
+		  }
+		});
+	  </script>-->
+
+
+</body>
+
+</html>

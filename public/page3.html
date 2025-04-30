@@ -1,0 +1,103 @@
+<!-- Page 3: Total Marks and GPA -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page 3 - Total Marks and GPA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label,
+        input {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Page 3 - Enter Total Marks and GPA</h1>
+    <form id="marksGPAForm" method="post" action="/page3">
+        <label for="totalFinalMarks">Total Final Marks:</label>
+        <input type="number" id="totalFinalMarks" name="total_final_marks" required><br><br>
+
+        <label for="finalMarks">Final Marks:</label>
+        <input type="number" id="finalMarks" name="final_marks" required><br><br>
+
+        <label for="totalMidsMarks">Total Mids Marks:</label>
+        <input type="number" id="totalMidsMarks" name="total_mids_marks" required><br><br>
+
+        <label for="midsMarks">Mids Marks:</label>
+        <input type="number" id="midsMarks" name="mids_marks" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const gpaInput = document.getElementById('gpa');
+    
+            // Function to calculate GPA
+            const calculateGPA = () => {
+                const totalFinalMarks = parseFloat(document.getElementById('totalFinalMarks').value);
+                const finalMarks = parseFloat(document.getElementById('finalMarks').value);
+                const totalMidsMarks = parseFloat(document.getElementById('totalMidsMarks').value);
+                const midsMarks = parseFloat(document.getElementById('midsMarks').value);
+                
+                // Calculate total assignment grade
+                const assignmentScores = Array.from(document.getElementsByName('assignment_marks[]'))
+                                             .map(el => parseFloat(el.value))
+                                             .filter(value => !isNaN(value));
+                const totalAssignmentGrade = (assignmentScores.reduce((acc, score) => acc + score, 0) / assignmentScores.length) * 0.13; // Updated weight
+                
+                // Calculate total quiz grade
+                const quizScores = Array.from(document.getElementsByName('quiz_marks[]'))
+                                       .map(el => parseFloat(el.value))
+                                       .filter(value => !isNaN(value));
+                const totalQuizGrade = (quizScores.reduce((acc, score) => acc + score, 0) / quizScores.length) * 0.12; // Updated weight
+    
+                // Retrieve credit hours from user input
+                const creditHours = parseFloat(document.getElementById('creditHours').value);
+    
+                // Calculate GPA based on assignment and quiz grades
+                const totalGrade = (finalMarks / totalFinalMarks) * 50 +
+                                   (midsMarks / totalMidsMarks) * 25 +
+                                   totalAssignmentGrade +
+                                   totalQuizGrade;
+    
+                // Calculate GPA considering credit hours
+                const calculatedGPA = (totalGrade / creditHours).toFixed(2);
+                gpaInput.value = calculatedGPA;
+            };
+    
+            // Attach the function to the appropriate event (submit, change, etc.)
+            // Replace 'click' with the appropriate event depending on your page flow
+            gpaInput.addEventListener('click', calculateGPA);
+        });
+    </script>
+    
+</body>
+</html>

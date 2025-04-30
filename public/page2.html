@@ -1,0 +1,111 @@
+<!-- Page 2: Assignment and Quizzes -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page 2 - Assignments and Quizzes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label,
+        input {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .row input {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Page 2 - Enter Assignments and Quizzes</h1>
+    <form id="assignmentForm" method="POST" action="/page2">
+        <div class="assignments">
+            <h2>Assignments</h2>
+            <div class="assignmentRows">
+                <!-- Fields for assignments -->
+                <div class="row">
+                    <input type="number" name="assignment1[]" placeholder="Enter Assignment Number">
+                    <input type="number" name="assignment2[]" placeholder="Assignment Marks">
+                    <input type="number" name="assignment3[]" placeholder="Obtained Assignment Marks">
+                </div>
+            </div>
+            <button type="button" onclick="addAssignment()">Add Assignment</button>
+        </div>
+        
+        <div class="quizzes">
+            <h2>Quizzes</h2>
+            <div class="quizRows">
+                <!-- Fields for quizzes -->
+                <div class="row">
+                    <input type="number" name="quiz1[]" placeholder="Enter Quiz Number">
+                    <input type="number" name="quiz2[]" placeholder="Quiz Marks">
+                    <input type="number" name="quiz3[]" placeholder="Obtained Quiz Marks">
+                </div>
+            </div>
+            <button type="button" onclick="addQuiz()">Add Quiz</button>
+        </div>
+        
+        <button type="submit">Next</button>
+    </form>
+
+    <script>
+        function addAssignment() {
+            const assignmentDiv = document.querySelector('.assignmentRows');
+            const newAssignment = document.createElement('div');
+            newAssignment.classList.add('row');
+            newAssignment.innerHTML = `
+                <input type="number" name="assignment1[]" placeholder="Enter Assignment Number">
+                <input type="number" name="assignment2[]" placeholder="Assignment Marks">
+                <input type="number" name="assignment3[]" placeholder="Obtained Assignment Marks">
+            `;
+            assignmentDiv.appendChild(newAssignment);
+        }
+
+        function addQuiz() {
+            const quizDiv = document.querySelector('.quizRows');
+            const newQuiz = document.createElement('div');
+            newQuiz.classList.add('row');
+            newQuiz.innerHTML = `
+                <input type="number" name="quiz1[]" placeholder="Enter Quiz Number">
+                <input type="number" name="quiz2[]" placeholder="Quiz Marks">
+                <input type="number" name="quiz3[]" placeholder="Obtained Quiz Marks">
+            `;
+            quizDiv.appendChild(newQuiz);
+        }
+    </script>
+</body>
+</html>

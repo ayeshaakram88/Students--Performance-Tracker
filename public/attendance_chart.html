@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Performance Tracker</title>
+  <link rel="stylesheet" href="chart.css">
+  <link rel="stylesheet" href="navigation.css">
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    
+    th {
+      background-color: #04AA6D;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="main_container" id="home">
+    <div class="navbar">
+      <div class="logo">
+        <a href="#">Student Performance Tracker</a>
+      </div>
+      <div class="navbar_items">
+        <ul>
+          <li><a href="index.html">LOGOUT</a></li>
+          <li><a href="index.html">CONTACT US</a></li>
+          <li><a href="index.html">HOME</a></li>
+        </ul>
+      </div>
+    </div> 
+    <div class="banner_image">
+      <div class="form-box">
+        <div class="button-box">
+          <div>
+            <h2><center>Attendance Table</center></h2>
+          </div>
+        </div>
+        <table id="attendanceTable">
+         
+          <tbody id="attendanceTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+    <script>
+      function displayData(data) {
+  const tableContainer = document.getElementById('attendanceTableBody');
+  const table = document.createElement('table');
+  const headerRow = table.insertRow(0);
+  headerRow.innerHTML = '<th>Subject ID</th><th>Name</th><th>Attendance</th>';
+
+  // Loop through the data and populate the table rows
+  data.forEach((row) => {
+    const newRow = table.insertRow();
+    newRow.innerHTML = `<td>${row[1]}</td><td>${row[2]}</td><td>${row[3]}</td>`; // Adjust field indexes based on the backend response
+  });
+
+  tableContainer.appendChild(table);
+}
+
+// Fetch data when the page loads
+window.onload = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const attendanceParam = urlParams.get('attendance');
+  const attendance = JSON.parse(decodeURIComponent(attendanceParam));
+
+  displayData(attendance);
+};
+      /*
+const urlParams=new URLSearchParams(window.location.search);
+const attendanceParam=urlParams.get('attendance');
+
+const attendance = JSON.parse(decodeURIComponent(attendanceParam));
+
+console.log(attendance);
+displayData(attendance);
+      function displayData(data) {
+        const tableContainer = document.getElementById('attendanceTable');
+        const table = document.createElement('table');
+        const headerRow = table.insertRow(0);
+        headerRow.innerHTML = '<th>Subject ID</th><th>Name</th><th>Attendance</th>';
+console.log(data);
+        // data.forEach((row) => {
+        //   const newRow = table.insertRow();
+        //   newRow.innerHTML = `<td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td>`; // Adjust field names based on the backend response
+        // });
+
+        tableContainer.appendChild(table);
+      }
+
+      // Fetch data when the page loads*/
+      
+    </script>
+  </div>
+</body>
+</html>

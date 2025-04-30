@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+</head>
+<body>
+    <form id="loginForm" action="/logins" method="post">
+        <input type="text" id="stud_email" placeholder="Student Email" required><br>
+        <input type="password" id="stud_password" placeholder="Password" required><br>
+        <input type="submit" value="submit">
+    </form>
+<!-- 
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const studEmail = document.getElementById('stud_email').value;
+            const studPassword = document.getElementById('stud_password').value;
+
+            try {
+                const response = await fetch('/logins', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email: studEmail, password: studPassword }),
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    window.location.href = 'stud_portal.html'; // Redirects to student portal on successful login
+                } else {
+                    alert('Invalid credentials. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error.message);
+                alert('Failed to log in. Please try again.');
+            }
+        });
+    </script> -->
+</body>
+</html>

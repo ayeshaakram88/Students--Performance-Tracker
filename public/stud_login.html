@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Desk</title>
+    <script>
+      // document.getElementById('loginForm').addEventListener('submit', async (event) => {
+      //     event.preventDefault();
+      async function login() {
+        const studEmail = document.getElementById("stud_email").value;
+        const studPassword = document.getElementById("stud_password").value;
+
+        try {
+          const response = await fetch("/logins", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email: studEmail, password: studPassword }),
+          });
+
+          const data = await response.json();
+          console.log(data);
+          if (data.success) {
+            window.location.href = "stud_portal.html"; // Redirects to student portal on successful login
+          } else {
+            alert("Invalid credentials. Please try again.");
+          }
+        } catch (error) {
+          console.error("Error:", error.message);
+          alert("Failed to log in. Please try again.");
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="layout.css" />
+    <link rel="stylesheet" href="navigation.css" />
+  </head>
+
+  <body>
+    <div class="main_container" id="home">
+      <div class="navbar">
+        <div class="logo">
+          <a href="#">Student Performance Tracker</a>
+        </div>
+        <div class="navbar_items">
+          <ul>
+            <li><a href="index.html">LOGOUT</a></li>
+            <li><a href="index.html">CONTACT US</a></li>
+            <li><a href="stud_login.html">STUDENT</a></li>
+            <li><a href="index.html">HOME</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="hero">
+        <div class="form-box">
+          <div class="button-box">
+            <div>
+              <h2><center>Student Login</center></h2>
+            </div>
+          </div>
+          <form
+            id="loginform"
+            class="input-group"
+            onsubmit="event.preventDefault(); login();"
+          >
+            <input
+              type="email"
+              name="stud_email"
+              id="stud_email"
+              class="input-field"
+              placeholder="User Id"
+              required
+            />
+            <input
+              type="password"
+              name="stud_password"
+              id="stud_password"
+              class="input-field"
+              placeholder="Enter Password"
+              required
+            />
+            <input type="checkbox" class="chech-box" /><span
+              >Remember Password</span
+            >
+            <button type="submit" class="submit-btn">Login</button>
+            <!--   </form>
+        <form id="register" class="input-groupss" action="reg_s.html" method="post">
+          <input type="text" name="stud_name" id="stud_name" class="input-field" placeholder="Student Name" required>
+          <input type="number" name="stud_id" id="stud_id" class="input-field" placeholder="Roll Number" required>
+          <input type="number" name="stud_year" id="stud_year" class="input-field" placeholder="Studing Year" required>
+          <input type="number" name="stud_sem" id="stud_sem" class="input-field" placeholder="Semester" required>
+          <input type="text" name="stud_dept" id="stud_dept" class="input-field" placeholder="Department" required>
+          <input type="email" name="stud_email" id="stud_email" class="input-field" placeholder="Email" required>
+          <input type="number" name="stud_phno" id="stud_phno" class="input-field" placeholder="Contact No" required>
+          <input type="password" name="stud_password" id="stud_password" class="input-field" placeholder="Enter Password" required>
+          <button type="submit" class="submit-btn"> Register </button>
+        </form>-->
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var x = document.getElementById("login");
+      var y = document.getElementById("register");
+      var z = document.getElementById("btn");
+
+      function register() {
+        x.style.left = "-400px";
+        y.style.left = "50px";
+        z.style.left = "110px";
+      }
+
+      function login1() {
+        x.style.left = "50px";
+        y.style.left = "450px";
+        z.style.left = "0px";
+      }
+    </script>
+  </body>
+</html>

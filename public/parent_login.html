@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parent Desk</title>
+    <script>
+      async function login() {
+        const parentEmail = document.getElementById("parent_email").value;
+        const parentPassword = document.getElementById("parent_password").value;
+
+        try {
+          const response = await fetch("/loginp", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: parentEmail,
+              password: parentPassword,
+            }),
+          });
+
+          const data = await response.json();
+          console.log(data);
+          if (data.success) {
+            window.location.href = "stud_portal.html"; // Redirects to parent portal on successful login
+          } else {
+            alert("Invalid credentials. Please try again.");
+          }
+        } catch (error) {
+          console.error("Error:", error.message);
+          alert("Failed to log in. Please try again.");
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="layout.css" />
+    <link rel="stylesheet" href="navigation.css" />
+  </head>
+
+  <body>
+    <div class="main_container" id="home">
+      <div class="navbar">
+        <div class="logo">
+          <a href="#">Student Performance Tracker</a>
+        </div>
+        <div class="navbar_items">
+          <ul>
+            <li><a href="index.html">LOGOUT</a></li>
+            <li><a href="index.html">CONTACT US</a></li>
+            <li><a href="parent_login.html">PARENT</a></li>
+            <li><a href="index.html">HOME</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="hero">
+        <div class="form-box">
+          <div class="button-box">
+            <div>
+              <h2><center>Parent Login</center></h2>
+            </div>
+          </div>
+          <form
+            id="loginform"
+            class="input-group"
+            onsubmit="event.preventDefault(); login();"
+          >
+            <input
+              type="email"
+              name="parent_email"
+              id="parent_email"
+              class="input-field"
+              placeholder="Email"
+              required
+            />
+            <input
+              type="password"
+              name="parent_password"
+              id="parent_password"
+              class="input-field"
+              placeholder="Password"
+              required
+            />
+            <input type="checkbox" class="chech-box" /><span
+              >Remember Password</span
+            >
+            <button type="submit" class="submit-btn">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var x = document.getElementById("login");
+      var y = document.getElementById("register");
+      var z = document.getElementById("btn");
+
+      function register() {
+        x.style.left = "-400px";
+        y.style.left = "50px";
+        z.style.left = "110px";
+      }
+
+      function login1() {
+        x.style.left = "50px";
+        y.style.left = "450px";
+        z.style.left = "0px";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Portal</title>
+    <link rel="stylesheet" href="design.css">
+     <link rel="stylesheet" href="navigation.css">
+</head>
+<body>
+	<div class="main_container" id="home">
+
+	<div class="navbar">
+	    <div class="logo">
+			<a href="#">Student Performance Tracker</a>
+		</div>
+		    <div class="navbar_items">
+			  <ul>
+				<li><a href="index.html">LOGOUT</a></li>
+			    <li><a href="index.html">CONTACT US</a></li>
+			    <li><a href="teach_login.html">TEACHER</a></li>
+			    <li><a href="index.html">HOME</a></li>
+			  </ul>
+		    </div>
+	</div> 
+<div class="banner_image">
+        <div class="form-box">
+        	<div class="button-box">
+                <div>
+                <h2><center>Update Attendance</center></h2></div>
+                </div>
+				<form method="POST" action="/submitAttendance">
+					<input type="text" name="s_id" id="stud_id" class="input-field" placeholder="Enter Student ID" required>
+					<input type="text" name="course_id" id="course_id" class="input-field" placeholder="Enter Course ID" required>
+					<input type="text" name="course_name" id="course_name" class="input-field" placeholder="Enter Course Name" required>
+					<input type="number" name="s_attendance" id="s_attendance" class="input-field" placeholder="Enter Student Attendance" required>
+					<div>
+					<select id="st_semester" name="semester" class="input-field" required>
+						<option value="Select a Semester" selected>Select a Semester</option>
+						<option value="Semester 1">Semester 1</option>
+						<option value="Semester 2">Semester 2</option>
+						<option value="Semester 3">Semester 3</option>
+						<option value="Semester 4">Semester 4</option>
+						<option value="Semester 5">Semester 5</option>
+						<option value="Semester 6">Semester 6</option> <!--backend change-->
+						<option value="Semester 7">Semester 7</option>
+						<option value="Semester 8">Semester 8</option>
+					</select>
+					</div>
+					<input type="submit" name="submit" value="Submit" class="submit-btn">
+				</form>
+
+	<!-- Create/Insert data into db  -->
+	<!-- <script>
+		document.getElementById('attendanceForm').addEventListener('submit', function(event) {
+		  event.preventDefault();
+		  const form = event.target;
+		  const formData = new FormData(form);
+	
+		  fetch('/submitAttendance', { // Replace with your server endpoint
+			method: 'POST',
+			body: formData
+		  })
+		  .then(response => response.text())
+		  .then(data => {
+			alert(data); // Display server response (success/error)
+		  })
+		  .catch(error => {
+			console.error('Error:', error);
+		  });
+		});
+	  </script> -->
+</div>
+</div>
+</body>
+
+</html>

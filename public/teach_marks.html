@@ -1,0 +1,192 @@
+<!-- <html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Portal</title>
+    <link rel="stylesheet" href="design.css">
+    <link rel="stylesheet" href="navigation.css">
+</head>
+<body>
+	<div class="main_container" id="home">
+
+	<div class="navbar">
+	    <div class="logo">
+			<a href="#">Student Performance Tracker</a>
+		</div>
+		    <div class="navbar_items">
+			  <ul>
+				<li><a href="index.html">LOGOUT</a></li>
+			    <li><a href="index.html">CONTACT US</a></li>
+			    <li><a href="teach_login.html">TEACHER</a></li>
+			    <li><a href="index.html">HOME</a></li>
+			  </ul>
+		    </div>
+	</div> 
+<div class="banner_image">
+        <div class="form-box">
+        	<div class="button-box">
+                <div>
+                <h2><center>Update Marks</center></h2></div>
+                </div>
+	<form method="POST" action="/submitMarks">
+		<input type="text" name="stud_id" id="stud_name" class="input-field" placeholder="Enter Student ID" required>
+		<input type="text" name="sub_id" id="stud_name" class="input-field" placeholder="Enter Subject ID" required>
+		<div>
+			<select id="month" name="month" class="input-field" required>
+				<option value="Select a Month" selected>Select a Month</option>
+				<option value="January">January</option>
+				<option value="February">February</option>
+				<option value="March">March</option>
+				<option value="April">April</option>
+				<option value="May">May</option>
+				<option value="June">June</option>
+				<option value="July">July</option>
+				<option value="August">August</option>
+				<option value="September">September</option>
+				<option value="October">October</option>
+				<option value="November">November</option>
+				<option value="December">December</option> 
+            </select>
+		</div>
+		<input type="number" name="totalf" id="total" class="input-field" placeholder="Enter Total Final Marks" required>
+		<input type="number" name="marksf" id="marks" class="input-field" placeholder="Enter Final Marks" required>
+		<input type="number" name="totalm" id="total" class="input-field" placeholder="Enter Total Mids Marks" required>
+		<input type="number" name="marksm" id="marks" class="input-field" placeholder="Enter Mids Marks" required>
+		<input type="number" name="totala" id="total" class="input-field" placeholder="Enter Total Assignment Marks" required>
+		<input type="number" name="marksa" id="marks" class="input-field" placeholder="Enter Assignment Marks" required>
+		<input type="number" name="totalq" id="total" class="input-field" placeholder="Enter Total Quiz Marks" required>
+		<input type="number" name="marksq" id="marks" class="input-field" placeholder="Enter Quiz Marks" required>
+		<div>
+        <button type="submit" name="submit" value="Submit" class="submit-btn"> Submit </button>
+        </div>
+	</form>
+
+
+	Create/Insert data into db  -->
+	<!--<script>
+		document.querySelector('form').addEventListener('submit', async (e) => {
+		  e.preventDefault();
+	  
+		  const stud_id = document.getElementById('stud_name').value;
+		  const sub_id = document.getElementById('sub_id').value;
+		  const month = document.getElementById('month').value;
+		  const total = document.getElementById('total').value;
+		  const marks = document.getElementById('marks').value;
+	  
+		  try {
+			const response = await fetch('/submitMarks', {
+			  method: 'POST',
+			  headers: {
+				'Content-Type': 'application/json',
+			  },
+			  body: JSON.stringify({ stud_id, sub_id, month, total, marks }),
+			});
+	  
+			const data = await response.json();
+			alert(data.message); // Show response message
+		  } catch (error) {
+			console.error('Error:', error.message);
+			alert('Failed to submit');
+		  }
+		});
+	  </script>
+
+
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Portal</title>
+    <link rel="stylesheet" href="design.css">
+    <link rel="stylesheet" href="navigation.css">
+</head>
+<body>
+    <div class="main_container" id="home">
+        <div class="navbar">
+            <div class="logo">
+                <a href="#">Student Performance Tracker</a>
+            </div>
+            <div class="navbar_items">
+                <ul>
+                    <li><a href="index.html">LOGOUT</a></li>
+                    <li><a href="index.html">CONTACT US</a></li>
+                    <li><a href="teach_login.html">TEACHER</a></li>
+                    <li><a href="index.html">HOME</a></li>
+                </ul>
+            </div>
+        </div> 
+        <div class="banner_image">
+            <div class="form-box">
+                <div class="button-box">
+                    <div>
+                        <h2><center>Update Marks</center></h2>
+                    </div>
+                </div>
+                <form method="POST" action="/submitMarks">
+                    <input type="text" name="stud_id" class="input-field" placeholder="Enter Student ID" required>
+                    <input type="text" name="sub_id" class="input-field" placeholder="Enter Subject ID" required>
+                    <div>
+                        <select name="month" class="input-field" required>
+                            <option value="Select a Month" selected>Select a Month</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <!-- Add other months here -->
+                        </select>
+                    </div>
+                    <input type="number" name="totalf" class="input-field" placeholder="Enter Total Final Marks" required>
+                    <input type="number" name="marksf" class="input-field" placeholder="Enter Final Marks" required>
+                    <input type="number" name="totalm" class="input-field" placeholder="Enter Total Mids Marks" required>
+                    <input type="number" name="marksm" class="input-field" placeholder="Enter Mids Marks" required>
+                    
+                    <!-- Allow inputting multiple quiz values -->
+                    <div id="quizInputs">
+                        <input type="number" name="quizNumber[]" class="input-field" placeholder="Enter Quiz Number" required>
+                        <input type="number" name="quizTotal[]" class="input-field" placeholder="Enter Total Quiz Marks" required>
+                        <input type="number" name="quizMarks[]" class="input-field" placeholder="Enter Quiz Marks" required>
+                    </div>
+                    <button type="button" onclick="addQuizField()">Add Quiz</button>
+                    
+                    <!-- Allow inputting multiple assignment values -->
+                    <div id="assignmentInputs">
+                        <input type="number" name="assignmentNumber[]" class="input-field" placeholder="Enter Assignment Number" required>
+                        <input type="number" name="assignmentTotal[]" class="input-field" placeholder="Enter Total Assignment Marks" required>
+                        <input type="number" name="assignmentMarks[]" class="input-field" placeholder="Enter Assignment Marks" required>
+                    </div>
+                    <button type="button" onclick="addAssignmentField()">Add Assignment</button>
+                    
+                    <div>
+                        <button type="submit" name="submit" value="Submit" class="submit-btn"> Submit </button>
+                    </div>
+                </form>
+                
+                <script>
+                    function addQuizField() {
+                        const quizInputs = document.getElementById('quizInputs');
+                        quizInputs.innerHTML += `
+                            <input type="number" name="quizNumber[]" class="input-field" placeholder="Enter Quiz Number" required>
+                            <input type="number" name="quizTotal[]" class="input-field" placeholder="Enter Total Quiz Marks" required>
+                            <input type="number" name="quizMarks[]" class="input-field" placeholder="Enter Quiz Marks" required>
+                        `;
+                    }
+
+                    function addAssignmentField() {
+                        const assignmentInputs = document.getElementById('assignmentInputs');
+                        assignmentInputs.innerHTML += `
+                            <input type="number" name="assignmentNumber[]" class="input-field" placeholder="Enter Assignment Number" required>
+                            <input type="number" name="assignmentTotal[]" class="input-field" placeholder="Enter Total Assignment Marks" required>
+                            <input type="number" name="assignmentMarks[]" class="input-field" placeholder="Enter Assignment Marks" required>
+                        `;
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

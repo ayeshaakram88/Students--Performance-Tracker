@@ -1,0 +1,83 @@
+<html>
+
+<head>
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal</title>
+    <link rel="stylesheet" href="design.css">
+    <link rel="stylesheet" href="navigation.css">
+</head>
+
+<body>
+	<div class="main_container" id="home">
+
+  <div class="navbar">
+      <div class="logo">
+      <a href="#">Student Performance Tracker</a>
+    </div>
+        <div class="navbar_items">
+        <ul>
+          <li><a href="index.html">LOGOUT</a></li>
+          <li><a href="index.html">CONTACT US</a></li>
+          <li><a href="index.html">HOME</a></li>
+        </ul>
+        </div>
+  </div> 
+	<div class="banner_image">
+        <div class="form-box">
+        	<div class="button-box">
+                <div>
+                <h2><center>View Result</center></h2></div>
+                </div>
+	     <form method="POST" action="/getMarksData">
+				<input type="text" name="s_id"  class="input-field" placeholder="Student ID" required>
+				<div>
+				 <select id="semester" name="semester" class="input-field" required>
+					<option value="Select a Semester" selected>Select a Semester</option>
+					<option value="Semester 1">Semester 1</option>
+					<option value="Semester 2">Semester 2</option>
+					<option value="Semester 3">Semester 3</option>
+					<option value="Semester 4">Semester 4</option>
+					<option value="Semester 5">Semester 5</option>
+					<option value="Semester 6">Semester 6</option> 
+					<option value="Semester 7">Semester 7</option>
+					<option value="Semester 8">Semester 8</option>
+	
+				</select>
+			</div>
+			
+			<button type="submit" name="submit" value="Submit" class="submit-btn"> Submit </button>
+		</div>
+		</form>
+
+	<!-- <form method="POST" action="marks_chart.html">
+		<p>
+		<p><input placeholder="* Enter Student ID" type="text" name="stud_id" required></p>
+
+		<div>
+			<label for="month">Select Month:</label>
+			<select id="month" name="month">
+				<option value="January" selected>January</option>
+				<option value="February">February</option>
+				<option value="March">March</option>
+				<option value="April">April</option>
+				<option value="May">May</option>
+				<option value="June">June</option>
+				<option value="July">July</option>
+				<option value="August">August</option>
+				<option value="September">September</option>
+				<option value="October">October</option>
+				<option value="November">November</option>
+				<option value="December">December</option>
+
+			</select>
+		</div>
+		<input type="submit" name="submit" value="Submit">
+		</p>
+	</form> -->
+	</div>
+</div>
+</body>
+
+</html>
